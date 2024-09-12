@@ -32,15 +32,8 @@ function App() {
     return (
     <>
         <Header />
-        {showComment && msg }
+        <div className="container"></div>
 
-        {showComment && (<>
-            <ul>
-                {feedbacks.map((val) => <li key={val.id}>{val.id} : {val.text}</li>)}
-            </ul>
-        </>)}
-
-      <Hello />
     </>
   )
 }
