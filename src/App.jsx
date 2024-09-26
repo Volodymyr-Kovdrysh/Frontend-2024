@@ -1,38 +1,25 @@
-import Hello from "./components/Hello";
+
 import Header from "./components/Header.jsx";
+import FeedBackList from "./components/FeedBackList.jsx";
+import {useState} from "react";
+import FeedbackData from "./data/FeedbackData.js";
+import FeedbackStat from "./components/FeedbackStat.jsx";
 
 
 function App() {
+    const [feedbacks, setFeedbacks] = useState(FeedbackData);
 
-    const msg = "Comment"
-    const showComment = true
 
-    const loading = false
-    const feedbacks = [
-        {
-            id: 1,
-            text: 'Comment 1',
-        },
-        {
-            id: 2,
-            text: 'Comment 2',
-        },
-        {
-            id: 3,
-            text: 'Comment 3',
-        },
-    ]
-
-    const text = 'TEXT456'
-
-    if (loading) return (<div style={{backgroundColor: 'red'}}>Loading...</div>)
 
 
 
     return (
     <>
         <Header />
-        <div className="container"></div>
+        <div className="container">
+            <FeedbackStat feedbacks={feedbacks} />
+            <FeedBackList feedbacks={feedbacks}/>
+        </div>
 
     </>
   )

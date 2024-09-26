@@ -12,8 +12,13 @@ const FeedbackData = [
     },
     {
         id: 3,
-        rating: 8,
+        rating: '8',
         text: 'Comment 3',
+    },
+    {
+        id: 4,
+        rating: 2,
+        text: 'Comment 4',
     },
 ]
 
