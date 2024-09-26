@@ -9,7 +9,12 @@ import FeedbackStat from "./components/FeedbackStat.jsx";
 function App() {
     const [feedbacks, setFeedbacks] = useState(FeedbackData);
 
-
+    const deleteFeedback = (id) => {
+        if(window.confirm('Ви впевнені, що хочете видалити цей важливий відгук??')
+        ){
+            setFeedbacks(feedbacks.filter(msg => msg.id !== id))
+        }
+    }
 
 
 
@@ -18,7 +23,7 @@ function App() {
         <Header />
         <div className="container">
             <FeedbackStat feedbacks={feedbacks} />
-            <FeedBackList feedbacks={feedbacks}/>
+            <FeedBackList feedbacks={feedbacks} handleDelete={deleteFeedback} />
         </div>
 
     </>
