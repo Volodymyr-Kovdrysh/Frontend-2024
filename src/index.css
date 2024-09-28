@@ -17,6 +17,11 @@ ul {
     list-style: none;
 }
 
+.active {
+    background: #000;
+    color: red;
+}
+
 .container {
     max-width: 768px;
     margin: auto;
@@ -185,10 +190,10 @@ input:focus {
 }
 
 .about-link {
-    position: absolute;
+    position: relative;
     bottom: 20px;
     right: 20px;
-    color: #fff;
+    color: #aaa;
     cursor: pointer;
 }
 

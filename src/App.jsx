@@ -6,6 +6,7 @@ import FeedbackData from "./data/FeedbackData.js";
 import FeedbackStat from "./components/FeedbackStat.jsx";
 import FeedbackForm from "./components/FeedbackForm.jsx";
 import {v4 as uuidv4} from "uuid";
+import AboutIconLink from "./components/AboutIconLink.jsx";
 
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
             <FeedbackForm handleAdd={addFeedback}/>
             <FeedbackStat feedbacks={feedbacks} />
             <FeedBackList feedbacks={feedbacks} handleDelete={deleteFeedback} />
+
+            <AboutIconLink />
         </div>
 
     </>
