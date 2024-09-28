@@ -1,3 +1,4 @@
+import {motion} from 'framer-motion';
 import FeedBackItem from "./FeedBackItem.jsx";
 
 const FeedBackList = ({feedbacks, handleDelete}) => {
@@ -7,7 +8,15 @@ const FeedBackList = ({feedbacks, handleDelete}) => {
     return (
         <div className="feedback-list">
             {feedbacks.map((item) => (
-                    <FeedBackItem key={item.id} item={item} handleDelete={handleDelete} />
+                <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                >
+                    <FeedBackItem  item={item} handleDelete={handleDelete} />
+                </motion.div>
+
                 )
             )}
         </div>

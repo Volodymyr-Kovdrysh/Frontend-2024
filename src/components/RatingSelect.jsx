@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState} from 'react';
 
 
 const RatingItem = ({nmbr, handlCh, selected}) => {
@@ -16,11 +16,12 @@ const RatingItem = ({nmbr, handlCh, selected}) => {
     )
 }
 
-const RatingSelect = () => {
-    const [selected, setSelected] = React.useState(1);
+const RatingSelect = ({select}) => {
+    const [selected, setSelected] = useState(10);
     const handleChange = e => {
         // console.log(e.currentTarget.value, typeof e.currentTarget.value);
         setSelected(Number(e.currentTarget.value));
+        select(+e.currentTarget.value);
     }
     return (
         <ul className='rating'>
