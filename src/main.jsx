@@ -3,15 +3,12 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import RootPage from "./pages/root-page.jsx";
-import ErrorPage from "./pages/error-page.jsx";
-import AboutPage from "./pages/about-page.jsx";
-import ParamsDemoPage from "./pages/params-demo-page.jsx";
+import {Demo, ErrorPage, Root, AboutPage} from "./pages/index.js";
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <RootPage />,
+        element: <Root />,
         errorElement: <ErrorPage />,
         children: [
             {
@@ -24,7 +21,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'params/:id/:name',
-                element: <ParamsDemoPage />
+                element: <Demo />
             }
         ]
     }
