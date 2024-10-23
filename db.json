@@ -1,0 +1,54 @@
+{
+  "feedbacks": [
+    {
+      "id": "1",
+      "rating": "10",
+      "text": "Comment from backend 1"
+    },
+    {
+      "id": "2",
+      "rating": "9",
+      "text": "Comment from backend 2"
+    },
+    {
+      "id": "3",
+      "rating": "8",
+      "text": "Comment from backend 3"
+    },
+    {
+      "id": "4",
+      "rating": "7",
+      "text": "Comment from backend 4"
+    },
+    {
+      "id": "cdc2",
+      "text": "booobobooboo",
+      "rating": 3
+    },
+    {
+      "id": "0a2f",
+      "text": "sdfa sd fas df",
+      "rating": 10
+    },
+    {
+      "id": "6a90",
+      "text": "dasdf asdf asdf",
+      "rating": 5
+    },
+    {
+      "text": "абракадабра",
+      "rating": 10,
+      "id": "ceec"
+    }
+  ],
+  "thema": [
+    {
+      "id": "1",
+      "thema": "dark"
+    },
+    {
+      "id": "2",
+      "thema": "light"
+    }
+  ]
+}
