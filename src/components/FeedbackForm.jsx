@@ -45,9 +45,14 @@ const FeedbackForm = () => {
                 rating: rating,
             }
 
-            console.log(newFeedback)
-            addFeedback(newFeedback)
+            if(feedbackEdit.edit === true){
+                updateFeedback(feedbackEdit.item.id, newFeedback);
+            }else{
+
+                addFeedback(newFeedback)
+            }
             setText('')
+            setBtnDisabled(true)
         }
     }
     return (
