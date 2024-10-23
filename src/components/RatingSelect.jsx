@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
+import FeedbackContext from "../context/FeedbackContext.jsx";
 
 
 const RatingItem = ({nmbr, handlCh, selected}) => {
@@ -17,7 +18,13 @@ const RatingItem = ({nmbr, handlCh, selected}) => {
 }
 
 const RatingSelect = ({select}) => {
+    const {feedbackEdit} = useContext(FeedbackContext)
     const [selected, setSelected] = useState(10);
+
+    useEffect(()=>{
+        setSelected(feedbackEdit.item.rating)
+    },[feedbackEdit])
+
     const handleChange = e => {
         // console.log(e.currentTarget.value, typeof e.currentTarget.value);
         setSelected(Number(e.currentTarget.value));
@@ -29,26 +36,6 @@ const RatingSelect = ({select}) => {
                                                          nmbr={i}
                                                          selected={selected}
                                                          handlCh={handleChange} />)}
-            {/*<li>*/}
-            {/*    <input*/}
-            {/*        type="radio"*/}
-            {/*        id='num1'*/}
-            {/*        value={'1'}*/}
-            {/*        onChange={handleChange}*/}
-            {/*        checked={selected === 1}*/}
-            {/*    />*/}
-            {/*    <label htmlFor="num1">1</label>*/}
-            {/*</li>*/}
-            {/*<li>*/}
-            {/*    <input*/}
-            {/*        type="radio"*/}
-            {/*        id='num2'*/}
-            {/*        value={'2'}*/}
-            {/*        onChange={handleChange}*/}
-            {/*        checked={selected === 2}*/}
-            {/*    />*/}
-            {/*    <label htmlFor="num2">2</label>*/}
-            {/*</li>*/}
         </ul>
     );
 };

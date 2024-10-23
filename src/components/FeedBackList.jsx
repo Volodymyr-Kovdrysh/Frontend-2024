@@ -1,7 +1,10 @@
 import {motion} from 'framer-motion';
 import FeedBackItem from "./FeedBackItem.jsx";
+import {useContext} from "react";
+import FeedbackContext from "../context/FeedbackContext.jsx";
 
-const FeedBackList = ({feedbacks, handleDelete}) => {
+const FeedBackList = () => {
+    const {feedbacks} = useContext(FeedbackContext);
     if (!feedbacks || feedbacks.length === 0) {
         return <p>Повідомлень немає</p>
     }
@@ -14,7 +17,7 @@ const FeedBackList = ({feedbacks, handleDelete}) => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                 >
-                    <FeedBackItem  item={item} handleDelete={handleDelete} />
+                    <FeedBackItem  item={item} />
                 </motion.div>
 
                 )
