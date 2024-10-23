@@ -34,10 +34,17 @@ export const FeedbackProvider = ({ children }) => {
         return await response.json();
     };
 
-    const deleteFeedback = (id) => {
+    const deleteFeedback = async (id) => {
         if(window.confirm('Ви впевнені, що хочете видалити цей важливий відгук??')
         ){
+            setIsloading(true)
+            const response = await fetch(`http://localhost:3000/feedbacks/${id}`, {
+                method: "DELETE"
+            })
+            const data = await response.json()
+            console.log("DELETE", data)
             setFeedbacks(feedbacks.filter(msg => msg.id !== id))
+            setIsloading(false)
         }
     }
 
