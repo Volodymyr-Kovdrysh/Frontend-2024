@@ -1,8 +1,11 @@
 import {createContext, useEffect, useState} from "react";
 import FeedbackData from "../data/FeedbackData.js";
 import {v4 as uuidv4} from "uuid";
+import getDataFromGoogleApp from "../data/Utils.js";
 
 const FeedbackContext = createContext()
+
+const googleUrl = "https://script.google.com/macros/s/AKfycbwBJSpac0CSr1HbYvhChNVkHMtf69TOM_2G9pmT-EgcbRw21CSw-xMOyrUa3unlDxBA/exec"//import.meta.env.VITE_apiURL
 
 export const FeedbackProvider = ({ children }) => {
 
@@ -16,22 +19,29 @@ export const FeedbackProvider = ({ children }) => {
     })
 
     useEffect(()=>{
+        // fetchFeedbacks()
+        //     .then(data => {
+        //         setFeedbacks(data);
+        //         setIsloading(false)
+        //     })
+        //     .catch(error => {
+        //         console.error('Error fetching feedbacks:', error);
+        //     });
         fetchFeedbacks()
-            .then(data => {
-                setFeedbacks(data);
-                setIsloading(false)
-            })
-            .catch(error => {
-                console.error('Error fetching feedbacks:', error);
-            });
     }, [])
 
     const fetchFeedbacks = async () => {
-        const response = await fetch('http://localhost:3000/feedbacks');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return await response.json();
+        // const response = await fetch('http://localhost:3000/feedbacks');
+        // if (!response.ok) {
+        //     throw new Error('Network response was not ok');
+        // }
+        // return await response.json();
+
+        getDataFromGoogleApp(googleUrl).then(data => {
+            console.log('Data from Google',data)
+            setFeedbacks(data.feedbacks)
+            setIsloading(false)
+        })
     };
 
     const deleteFeedback = async (id) => {
