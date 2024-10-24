@@ -37,7 +37,7 @@ export const FeedbackProvider = ({ children }) => {
         // }
         // return await response.json();
 
-        getDataFromGoogleApp(googleUrl).then(data => {
+        getDataFromGoogleApp(`${googleUrl}?method=GET`).then(data => {
             console.log('Data from Google',data)
             setFeedbacks(data.feedbacks)
             setIsloading(false)
