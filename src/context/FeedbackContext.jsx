@@ -5,7 +5,7 @@ import getDataFromGoogleApp from "../data/Utils.js";
 
 const FeedbackContext = createContext()
 
-const googleUrl = "https://script.google.com/macros/s/AKfycbwBJSpac0CSr1HbYvhChNVkHMtf69TOM_2G9pmT-EgcbRw21CSw-xMOyrUa3unlDxBA/exec"//import.meta.env.VITE_apiURL
+const googleUrl = import.meta.env.VITE_apiURL
 
 export const FeedbackProvider = ({ children }) => {
 
