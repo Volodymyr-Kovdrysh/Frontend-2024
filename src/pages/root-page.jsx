@@ -1,8 +1,16 @@
 
 import Card from "../shared/Card.jsx";
 import {NavLink, Outlet} from "react-router-dom";
+import {useContext} from "react";
+import FeedbackContext from "../context/FeedbackContext.jsx";
+import {ImEnter, ImExit} from "react-icons/im";
 
 const RootPage = () => {
+    const {user, logout} = useContext(FeedbackContext)
+
+    const handleExit = () => {
+        logout()
+    }
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -26,7 +34,7 @@ const RootPage = () => {
 
                 </div>
                 <div className="navbar-end">
-                    login
+                    {user.login ? <div onClick={handleExit}><ImExit size={32} /></div> : <NavLink to={'/login'} ><ImEnter size={32}/></NavLink>}
                 </div>
             </div>
             <Outlet/>

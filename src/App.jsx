@@ -12,7 +12,7 @@ import './App.css'
 function App() {
 
     return (
-    <FeedbackProvider>
+    <>
         <Header />
         {/*<Spinner />*/}
         <div className="container">
@@ -23,7 +23,7 @@ function App() {
             <AboutIconLink />
         </div>
 
-    </FeedbackProvider>
+    </>
   )
 }
 

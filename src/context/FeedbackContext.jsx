@@ -17,6 +17,8 @@ export const FeedbackProvider = ({ children }) => {
         edit: false,
     })
 
+    const [user, setUser]= useState({login: true});
+
     useEffect(()=>{
 
         fetchFeedbacks()
@@ -74,6 +76,18 @@ export const FeedbackProvider = ({ children }) => {
         setFeedbackEdit({item, edit: true})
     }
 
+    const login = () => {
+        setUser(prevState => ({...prevState, login: true}))
+    }
+
+    const logout = () => {
+        setUser(prevState => ({...prevState, login: false}))
+    }
+
+    const register = (obj) => {
+        alert(JSON.stringify(obj))
+    }
+
 
 
     return <FeedbackContext.Provider value={{
@@ -83,7 +97,11 @@ export const FeedbackProvider = ({ children }) => {
         updateFeedback,
         editFeedback,
         feedbackEdit,
-        isLoading
+        isLoading,
+        user,
+        login,
+        logout,
+        register,
     }}>
         {children}
     </FeedbackContext.Provider>;
