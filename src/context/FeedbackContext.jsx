@@ -17,12 +17,22 @@ export const FeedbackProvider = ({ children }) => {
         edit: false,
     })
 
-    const [user, setUser]= useState({login: true});
+    const [user, setUser]= useState({login: true, email: ''});
 
     useEffect(()=>{
-
+        getUser()
         fetchFeedbacks()
     }, [])
+
+    const getUser= () => {
+        if(!localStorage.getItem('app')){
+            localStorage.setItem('app', JSON.stringify({...user}))
+        }
+        else {
+            setUser(JSON.parse(localStorage.getItem('app')))
+        }
+
+    }
 
     const fetchFeedbacks = async () => {
 
@@ -76,12 +86,19 @@ export const FeedbackProvider = ({ children }) => {
         setFeedbackEdit({item, edit: true})
     }
 
-    const login = () => {
-        setUser(prevState => ({...prevState, login: true}))
+    const login = (email='') => {
+        setUser(prevState => {
+            localStorage.setItem('app', JSON.stringify({...prevState, login: true, email}))
+            return {...prevState, login: true, email}
+        })
     }
 
     const logout = () => {
-        setUser(prevState => ({...prevState, login: false}))
+        setUser(prevState => {
+        localStorage.setItem('app', JSON.stringify({...prevState, login: false, email: ''}))
+        return {...prevState, login: false, email: ''}
+
+        })
     }
 
     const register = (obj) => {

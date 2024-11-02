@@ -1,16 +1,35 @@
-import {useContext} from 'react';
+import {useContext, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import FeedbackContext from "../context/FeedbackContext.jsx";
 
 const Login = () => {
     const navigate = useNavigate();
     const {login} = useContext(FeedbackContext)
+    const [formData, setFormData] = useState({email: ''})
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        login()
-        navigate('/')
+        if(formData.email.includes('@chnu.edu.ua')) {
+            login(formData.email)
+            navigate('/app')
+        }
+        else {
+            setFormData({email: ''})
+            alert('Ваша пошта не нележить до спільноти ЧНУ')
+        }
+
     }
+
+    const handleChange = (e) => {
+        setFormData(prevState => {
+            return {
+                ...prevState,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+
+
     return (
         <div className="card">
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -26,6 +45,24 @@ const Login = () => {
                 </div>
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                     <form className="space-y-6" action="#" method="POST" onSubmit={handleSubmit}>
+                        <div>
+                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                                Email address
+                            </label>
+                            <div className="mt-2">
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    placeholder="surname.name@chnu.edu.ua"
+                                    onChange={handleChange}
+                                    value={formData.email}
+                                    required
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                />
+                            </div>
+                        </div>
+
                         <div>
                             <button
                                 type="submit"

@@ -14,8 +14,8 @@ const RootPage = () => {
     return (
         <div>
             <div className="navbar bg-base-100">
-                <div className="navbar-start">
-                    LOGO
+                <div className="navbar-start text-base-content">
+                    LOGO {user.email}
                 </div>
                 <div className="navbar-center">
                     <ul className="menu menu-horizontal bg-base-200">

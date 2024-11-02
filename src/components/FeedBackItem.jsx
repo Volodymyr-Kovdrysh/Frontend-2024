@@ -4,7 +4,8 @@ import {useContext} from "react";
 import FeedbackContext from "../context/FeedbackContext.jsx";
 
 const FeedBackItem = ({item}) => {
-    const {deleteFeedback, editFeedback} = useContext(FeedbackContext)
+    const {deleteFeedback, editFeedback, user} = useContext(FeedbackContext)
+    console.log(user, item)
     // const handlerClick = (item) => {
     //     console.log("Буде видалено", item)
     // }
@@ -13,14 +14,17 @@ const FeedBackItem = ({item}) => {
     return (
         <Card>
             <div className="num-display"> {item.rating}</div>
-            <button className="close" onClick={() => deleteFeedback(item.id)}>
-                <FaTimes color="purple"/>
-            </button>
-            <button className="edit" onClick={() => {
-                editFeedback(item)
-            }}>
-                <FaEdit color={'purple'}/>
-            </button>
+            {(user.login && user.email === item.email) && <>
+                <button className="close" onClick={() => deleteFeedback(item.id)}>
+                    <FaTimes color="purple"/>
+                </button>
+                <button className="edit" onClick={() => {
+                    editFeedback(item)
+                }}>
+                    <FaEdit color={'purple'}/>
+                </button>
+            </>}
+
             <div className="text-display">{item.text}</div>
         </Card>
     );

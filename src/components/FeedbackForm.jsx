@@ -5,7 +5,7 @@ import RatingSelect from "./RatingSelect.jsx";
 import FeedbackContext from "../context/FeedbackContext.jsx";
 
 const FeedbackForm = () => {
-    const {addFeedback, feedbackEdit, updateFeedback} = useContext(FeedbackContext);
+    const {addFeedback, feedbackEdit, updateFeedback, user} = useContext(FeedbackContext);
     const [text, setText] = useState("");
     const [message, setMessage] = useState(null);
     const [rating, setRating] = useState(10);
@@ -43,6 +43,7 @@ const FeedbackForm = () => {
             const newFeedback = {
                 text: text.trim(),
                 rating: rating,
+                email: user.email,
             }
 
             if(feedbackEdit.edit === true){
