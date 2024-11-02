@@ -19,23 +19,12 @@ export const FeedbackProvider = ({ children }) => {
     })
 
     useEffect(()=>{
-        // fetchFeedbacks()
-        //     .then(data => {
-        //         setFeedbacks(data);
-        //         setIsloading(false)
-        //     })
-        //     .catch(error => {
-        //         console.error('Error fetching feedbacks:', error);
-        //     });
+
         fetchFeedbacks()
     }, [])
 
     const fetchFeedbacks = async () => {
-        // const response = await fetch('http://localhost:3000/feedbacks');
-        // if (!response.ok) {
-        //     throw new Error('Network response was not ok');
-        // }
-        // return await response.json();
+
 
         getDataFromGoogleApp(`${googleUrl}?method=GET`).then(data => {
             console.log('Data from Google',data)
@@ -48,35 +37,25 @@ export const FeedbackProvider = ({ children }) => {
         if(window.confirm('Ви впевнені, що хочете видалити цей важливий відгук??')
         ){
             setIsloading(true)
-            // const response = await fetch(`http://localhost:3000/feedbacks/${id}`, {
-            //     method: "DELETE"
-            // })
-            // const data = await response.json()
             getDataFromGoogleApp(`${googleUrl}?method=DELETE&id=${id}`).then(data => {
-                console.log('Data from DELETE',data)
                 setFeedbacks(data.feedbacks)
                 setIsloading(false)
             })
-            // console.log("DELETE", data)
-            // setFeedbacks(feedbacks.filter(msg => msg.id !== id))
-            // setIsloading(false)
         }
     }
 
     const addFeedback = async (newFeedback) => {
         setIsloading(true)
-        const response = await fetch('http://localhost:3000/feedbacks?_sort=id&_order=asc', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newFeedback)
-        })
-        const data = await response.json()
 
-        // newFeedback.id = uuidv4()
-        setFeedbacks([data, ...feedbacks])
-        setIsloading(false)
+        newFeedback.id = uuidv4()
+
+
+        const {id, rating, text, email} = newFeedback
+        getDataFromGoogleApp(`${googleUrl}?method=POST&id=${id}&rating=${rating}&text=${text}&email=${email}`).then(data => {
+            setFeedbacks(data.feedbacks)
+            setIsloading(false)
+        })
+
     }
 
     const updateFeedback = async (id, updItem) => {
