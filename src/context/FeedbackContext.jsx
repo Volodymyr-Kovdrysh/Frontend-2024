@@ -48,13 +48,18 @@ export const FeedbackProvider = ({ children }) => {
         if(window.confirm('Ви впевнені, що хочете видалити цей важливий відгук??')
         ){
             setIsloading(true)
-            const response = await fetch(`http://localhost:3000/feedbacks/${id}`, {
-                method: "DELETE"
+            // const response = await fetch(`http://localhost:3000/feedbacks/${id}`, {
+            //     method: "DELETE"
+            // })
+            // const data = await response.json()
+            getDataFromGoogleApp(`${googleUrl}?method=DELETE&id=${id}`).then(data => {
+                console.log('Data from DELETE',data)
+                setFeedbacks(data.feedbacks)
+                setIsloading(false)
             })
-            const data = await response.json()
-            console.log("DELETE", data)
-            setFeedbacks(feedbacks.filter(msg => msg.id !== id))
-            setIsloading(false)
+            // console.log("DELETE", data)
+            // setFeedbacks(feedbacks.filter(msg => msg.id !== id))
+            // setIsloading(false)
         }
     }
 
