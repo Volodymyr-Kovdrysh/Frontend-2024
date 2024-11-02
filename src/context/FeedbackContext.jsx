@@ -60,21 +60,15 @@ export const FeedbackProvider = ({ children }) => {
 
     const updateFeedback = async (id, updItem) => {
         setIsloading(true)
-        const response = await fetch(`http://localhost:3000/feedbacks/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updItem)
+
+        getDataFromGoogleApp(`${googleUrl}?method=PUT&id=${id}&rating=${updItem.rating}&text=${updItem.text}`).then(data => {
+            setFeedbacks(data.feedbacks)
+            setFeedbackEdit({
+                    item: {},
+                    edit: false,
+                })
+            setIsloading(false)
         })
-        const data = await response.json()
-        setFeedbacks(feedbacks.map(item => item.id === id ? {...item, ...data } : item))
-        // setFeedbacks(feedbacks.map(item => item.id === id ? {...item, ...updItem } : item))
-        setFeedbackEdit({
-            item: {},
-            edit: false,
-        })
-        setIsloading(false)
     }
 
     const editFeedback = (item) => {
