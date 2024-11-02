@@ -6,6 +6,7 @@ import FeedbackForm from "./components/FeedbackForm.jsx";
 import AboutIconLink from "./components/AboutIconLink.jsx";
 import {FeedbackProvider} from "./context/FeedbackContext";
 import Spinner from "./shared/Spinner.jsx";
+import './App.css'
 
 
 function App() {

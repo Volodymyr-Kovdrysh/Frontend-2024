@@ -1,5 +1,4 @@
 import {createContext, useEffect, useState} from "react";
-import FeedbackData from "../data/FeedbackData.js";
 import {v4 as uuidv4} from "uuid";
 import getDataFromGoogleApp from "../data/Utils.js";
 
